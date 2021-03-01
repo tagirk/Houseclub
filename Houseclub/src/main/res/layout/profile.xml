@@ -115,9 +115,10 @@
 				android:paddingTop="4dp"
 				android:paddingBottom="4dp"
 				android:textSize="15dp"
+				android:textColor="@color/blue"
 				android:layout_marginRight="16dp"
 				android:drawableLeft="@drawable/ic_twitter"
-				android:drawablePadding="8dp"
+				android:drawablePadding="4dp"
 				tools:text="twitter"/>
 
 			<TextView
@@ -127,8 +128,9 @@
 				android:paddingTop="4dp"
 				android:paddingBottom="4dp"
 				android:textSize="15dp"
+				android:textColor="@color/blue"
 				android:drawableLeft="@drawable/ic_instagram"
-				android:drawablePadding="8dp"
+				android:drawablePadding="4dp"
 				tools:text="instagram"/>
 
 		</LinearLayout>

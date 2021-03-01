@@ -137,17 +137,18 @@ public class ProfileFragment extends LoaderFragment{
 						else
 							followBtn.setText(user.isFollowed() ? R.string.following : R.string.follow);
 
-						if(user.twitter==null && user.instagram==null){
-							socialButtons.setVisibility(View.GONE);
-						}else{
-							socialButtons.setVisibility(View.VISIBLE);
-							twitter.setVisibility(user.twitter==null ? View.GONE : View.VISIBLE);
-							instagram.setVisibility(user.instagram==null ? View.GONE : View.VISIBLE);
-							if(user.twitter!=null)
-								twitter.setText(user.twitter);
-							if(user.instagram!=null)
-								instagram.setText(user.instagram);
+//						if(user.twitter==null && user.instagram==null){
+//							socialButtons.setVisibility(View.GONE);
+//						}else{
+//							socialButtons.setVisibility(View.VISIBLE);
+						twitter.setVisibility(user.twitter == null ? View.GONE : View.VISIBLE);
+//							instagram.setVisibility(user.instagram==null ? View.GONE : View.VISIBLE);
+						if (user.twitter != null) {
+							twitter.setText(user.twitter);
 						}
+//							if(user.instagram!=null)
+						instagram.setText(user.instagram != null ? "@"+user.instagram : getString(R.string.add_instagram));
+//						}
 
 						String joined=getString(R.string.joined_date, DateFormat.getDateInstance().format(user.timeCreated));
 						if(user.invitedByUserProfile!=null){
@@ -288,7 +289,11 @@ public class ProfileFragment extends LoaderFragment{
 	}
 
 	private void onInstagramClick(View v){
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/"+user.instagram)));
+		if(user.instagram != null) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/" + user.instagram)));
+		}else{
+			Nav.go(getActivity(), WebViewFragment.class, null);
+		}
 	}
 
 	private void onTwitterClick(View v){

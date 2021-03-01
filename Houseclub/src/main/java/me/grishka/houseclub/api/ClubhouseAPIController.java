@@ -41,6 +41,9 @@ public class ClubhouseAPIController{
 	public static final String TWITTER_ID = "NyJhARWVYU1X3qJZtC2154xSI";
 	public static final String TWITTER_SECRET = "ylFImLBFaOE362uwr4jut8S8gXGWh93S1TUKbkfh7jDIPse02o";
 
+	public static final String INSTAGRAM_ID = "1352866981588597";
+	public static final String INSTAGRAM_CALLBACK = "https://www.joinclubhouse.com/callback/instagram";
+
 	public static final String AGORA_KEY = "938de3e8055e42b281bb8c6f69c21f78";
 	public static final String SENTRY_KEY = "5374a416cd2d4009a781b49d1bd9ef44@o325556.ingest.sentry.io/5245095";
 	public static final String INSTABUG_KEY = "4e53155da9b00728caa5249f2e35d6b3";

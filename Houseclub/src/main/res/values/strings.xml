@@ -10,7 +10,7 @@
 	<string name="warning">Warning!</string>
 	<string name="warning_text">This is an <b>unofficial</b> app. Using this might get your Clubhouse account permanently banned. Proceed at your own risk.</string>
 	<string name="i_understand">I understand</string>
-	<string name="loading">Loading...</string>
+	<string name="loading">Loading…</string>
 	<string name="error_loading">Error loading data</string>
 	<string name="waitlist">Wait list</string>
 	<string name="waitlist_text">You\'re waiting for someone to invite you to Clubhouse. Your account is currently inactive.</string>
@@ -64,4 +64,6 @@
 	<string name="event_expired">This event has already ended</string>
 	<string name="log_in_to_activate">Please log in again to activate your account.</string>
 	<string name="ok">OK</string>
+	<string name="add_instagram">Add instagram</string>
+	<string name="retry">Retry</string>
 </resources>
