@@ -42,8 +42,8 @@ import me.grishka.houseclub.api.methods.InviteToApp;
 import me.grishka.houseclub.api.methods.Me;
 import me.grishka.houseclub.api.methods.Unfollow;
 import me.grishka.houseclub.api.methods.UpdateBio;
-import me.grishka.houseclub.api.methods.UpdatePhoto;
 import me.grishka.houseclub.api.methods.UpdateName;
+import me.grishka.houseclub.api.methods.UpdatePhoto;
 import me.grishka.houseclub.api.model.FullUser;
 
 public class ProfileFragment extends LoaderFragment{
@@ -137,18 +137,17 @@ public class ProfileFragment extends LoaderFragment{
 						else
 							followBtn.setText(user.isFollowed() ? R.string.following : R.string.follow);
 
-//						if(user.twitter==null && user.instagram==null){
-//							socialButtons.setVisibility(View.GONE);
-//						}else{
-//							socialButtons.setVisibility(View.VISIBLE);
-						twitter.setVisibility(user.twitter == null ? View.GONE : View.VISIBLE);
-//							instagram.setVisibility(user.instagram==null ? View.GONE : View.VISIBLE);
-						if (user.twitter != null) {
-							twitter.setText(user.twitter);
+						if (!self && user.twitter == null && user.instagram == null) {
+							socialButtons.setVisibility(View.GONE);
+						} else {
+							socialButtons.setVisibility(View.VISIBLE);
+							twitter.setVisibility(user.twitter == null ? View.GONE : View.VISIBLE);
+							instagram.setVisibility(!self && user.instagram == null ? View.GONE : View.VISIBLE);
+							if (user.twitter != null) {
+								twitter.setText(user.twitter);
+							}
+							instagram.setText(user.instagram != null ? "@" + user.instagram : getString(R.string.add_instagram));
 						}
-//							if(user.instagram!=null)
-						instagram.setText(user.instagram != null ? "@"+user.instagram : getString(R.string.add_instagram));
-//						}
 
 						String joined=getString(R.string.joined_date, DateFormat.getDateInstance().format(user.timeCreated));
 						if(user.invitedByUserProfile!=null){
