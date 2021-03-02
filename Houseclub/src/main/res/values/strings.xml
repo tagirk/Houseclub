@@ -66,4 +66,6 @@
 	<string name="ok">OK</string>
 	<string name="add_instagram">Add instagram</string>
 	<string name="retry">Retry</string>
+    <string name="profile">Profile</string>
+	<string name="search">Search</string>
 </resources>

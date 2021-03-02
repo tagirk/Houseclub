@@ -1,8 +1,7 @@
 package me.grishka.houseclub.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Outline;
@@ -10,22 +9,19 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.stream.Collectors;
+
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.SimpleCallback;
 import me.grishka.appkit.fragments.BaseRecyclerFragment;
@@ -35,12 +31,11 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.utils.V;
 import me.grishka.houseclub.MainActivity;
 import me.grishka.houseclub.R;
-import me.grishka.houseclub.VoiceService;
 import me.grishka.houseclub.api.ClubhouseSession;
 import me.grishka.houseclub.api.methods.GetChannels;
 import me.grishka.houseclub.api.model.Channel;
 
-public class HomeFragment extends BaseRecyclerFragment<Channel>{
+public class HomeFragment extends BaseRecyclerFragment<Channel> implements Toolbar.OnMenuItemClickListener {
 
 	private ChannelAdapter adapter;
 	private ViewOutlineProvider roundedCornersOutline=new ViewOutlineProvider(){
@@ -58,7 +53,7 @@ public class HomeFragment extends BaseRecyclerFragment<Channel>{
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
 		loadData();
-		setHasOptionsMenu(true);
+//		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -84,6 +79,8 @@ public class HomeFragment extends BaseRecyclerFragment<Channel>{
 			}
 		});
 		getToolbar().setElevation(0);
+		getToolbar().inflateMenu(R.menu.home);
+		getToolbar().setOnMenuItemClickListener(this);
 	}
 
 	@Override
@@ -111,20 +108,21 @@ public class HomeFragment extends BaseRecyclerFragment<Channel>{
 		return true;
 	}
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-		menu.add(0,0,0,"").setIcon(R.drawable.ic_notifications).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add(0,1,0,"").setIcon(R.drawable.ic_baseline_person_24).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-	}
 
+	@SuppressLint("NonConstantResourceId")
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
+	public boolean onMenuItemClick(MenuItem item) {
 		Bundle args=new Bundle();
 		args.putInt("id", Integer.parseInt(ClubhouseSession.userID));
-		if(item.getItemId()==0) {
-			Nav.go(getActivity(), NotificationListFragment.class, args);
-		} else if(item.getItemId()==1){
-			Nav.go(getActivity(), ProfileFragment.class, args);
+		switch (item.getItemId()){
+			case R.id.notifications:
+				Nav.go(getActivity(), NotificationListFragment.class, args);
+				break;
+			case R.id.profile:
+				Nav.go(getActivity(), ProfileFragment.class, args);
+				break;
+			case R.id.search:
+				Nav.go(getActivity(), SearchFragment.class, args);
 		}
 		return true;
 	}
